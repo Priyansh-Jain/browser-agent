@@ -1,6 +1,6 @@
 ## 1. Original user goal
 
-> Compare the top 3 Hugging Face text-generation models, ranked by likes.
+> Compare the top 3 Hugging Face text-generation models, ranked by likes
 
 ## 2. Planner DAG
 
@@ -87,11 +87,11 @@ _Page-state log:_
 
 | t (s) | URL | Title | Note |
 |---|---|---|---|
-| 5.042 | huggingface.co/models | Models – Hugging Face | landing (default sort) |
-| 10.094 | huggingface.co/models?pipeline_tag=text-generation&sort=likes | Text Generation Models – Hugging Face | filtered + sorted listing |
-| 13.728 | huggingface.co/deepseek-ai/DeepSeek-R1 | deepseek-ai/DeepSeek-R1 · Hugging Face | model page: deepseek-ai/DeepSeek-R1 |
-| 16.973 | huggingface.co/meta-llama/Meta-Llama-3-8B | meta-llama/Meta-Llama-3-8B · Hugging Face | model page: meta-llama/Meta-Llama-3-8B |
-| 19.584 | huggingface.co/meta-llama/Llama-3.1-8B-Instruct | meta-llama/Llama-3.1-8B-Instruct · Hugging Face | model page: meta-llama/Llama-3.1-8B-Instruct |
+| 13.782 | huggingface.co/models | Models – Hugging Face | landing (default sort) |
+| 24.392 | huggingface.co/models?pipeline_tag=text-generation&sort=likes | Text Generation Models – Hugging Face | filtered + sorted listing |
+| 29.654 | huggingface.co/deepseek-ai/DeepSeek-R1 | deepseek-ai/DeepSeek-R1 · Hugging Face | model page: deepseek-ai/DeepSeek-R1 |
+| 34.029 | huggingface.co/meta-llama/Meta-Llama-3-8B | meta-llama/Meta-Llama-3-8B · Hugging Face | model page: meta-llama/Meta-Llama-3-8B |
+| 37.219 | huggingface.co/meta-llama/Llama-3.1-8B-Instruct | meta-llama/Llama-3.1-8B-Instruct · Hugging Face | model page: meta-llama/Llama-3.1-8B-Instruct |
 
 ## 6. Extracted data (raw, per model)
 
@@ -210,7 +210,7 @@ _Page-state log:_
 | Input tokens | 1,852 |
 | Output tokens | 353 |
 | **Estimated cost (USD)** | **$0.0109** |
-| Wall-clock duration | 20.39 s |
+| Wall-clock duration | 38.69 s |
 
 > ℹ️ _LLM calls in this run used the offline **demo gateway** (mocked responses); token counts & cost are estimated from listed model prices. Export `ANTHROPIC_API_KEY` to make every call fully live._
 

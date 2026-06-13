@@ -1,8 +1,8 @@
 {
-  "goal": "Compare the top 3 Hugging Face text-generation models, ranked by likes.",
-  "run_id": "run-20260613-153622",
-  "started_at": 1781345182.132812,
-  "ended_at": 1781345202.523061,
+  "goal": "Compare the top 3 Hugging Face text-generation models, ranked by likes",
+  "run_id": "run-20260613-154310",
+  "started_at": 1781345590.562618,
+  "ended_at": 1781345629.252905,
   "plan": {
     "nodes": [
       {
@@ -84,10 +84,10 @@
       "node": "plan",
       "skill": "planner",
       "params": {
-        "goal": "Compare the top 3 Hugging Face text-generation models, ranked by likes."
+        "goal": "Compare the top 3 Hugging Face text-generation models, ranked by likes"
       },
-      "started": 0.0,
-      "ended": 0.0,
+      "started": 0.001,
+      "ended": 0.001,
       "status": "ok",
       "summary": "5 nodes via llm"
     },
@@ -95,8 +95,8 @@
       "node": "research",
       "skill": "researcher",
       "params": {},
-      "started": 0.0,
-      "ended": 0.0,
+      "started": 0.001,
+      "ended": 0.001,
       "status": "ok",
       "summary": "candidate_urls=['https://huggingface.co/models']"
     },
@@ -106,8 +106,8 @@
       "params": {
         "top_n": 3
       },
-      "started": 0.0,
-      "ended": 20.388,
+      "started": 0.001,
+      "ended": 38.687,
       "status": "ok",
       "summary": "3 model(s) collected; primary path='extract'"
     },
@@ -115,8 +115,8 @@
       "node": "distill",
       "skill": "distiller",
       "params": {},
-      "started": 20.388,
-      "ended": 20.389,
+      "started": 38.687,
+      "ended": 38.687,
       "status": "ok",
       "summary": "3 comparison rows"
     },
@@ -124,8 +124,8 @@
       "node": "qa",
       "skill": "qa",
       "params": {},
-      "started": 20.389,
-      "ended": 20.389,
+      "started": 38.687,
+      "ended": 38.687,
       "status": "ok",
       "summary": "QA PASS (5/5)"
     },
@@ -133,8 +133,8 @@
       "node": "report",
       "skill": "report",
       "params": {},
-      "started": 20.389,
-      "ended": 20.39,
+      "started": 38.687,
+      "ended": 38.69,
       "status": "ok",
       "summary": "replay payload assembled (3 rows, 8 sections)"
     }
@@ -146,7 +146,7 @@
       "input_tokens": 295,
       "output_tokens": 135,
       "cost_usd": 0.00291,
-      "t": 0.0
+      "t": 0.001
     },
     {
       "model": "claude-sonnet-4-6",
@@ -154,7 +154,7 @@
       "input_tokens": 60,
       "output_tokens": 57,
       "cost_usd": 0.001035,
-      "t": 0.0
+      "t": 0.001
     },
     {
       "model": "claude-sonnet-4-6",
@@ -162,7 +162,7 @@
       "input_tokens": 1222,
       "output_tokens": 20,
       "cost_usd": 0.003966,
-      "t": 14.773
+      "t": 31.11
     },
     {
       "model": "claude-sonnet-4-6",
@@ -170,7 +170,7 @@
       "input_tokens": 118,
       "output_tokens": 75,
       "cost_usd": 0.001479,
-      "t": 20.389
+      "t": 38.687
     },
     {
       "model": "claude-sonnet-4-6",
@@ -178,7 +178,7 @@
       "input_tokens": 157,
       "output_tokens": 66,
       "cost_usd": 0.001461,
-      "t": 20.389
+      "t": 38.687
     }
   ],
   "actions": [
@@ -190,7 +190,7 @@
       "path": "",
       "url": "https://huggingface.co/models",
       "note": "open models listing",
-      "t": 5.016
+      "t": 13.735
     },
     {
       "i": 2,
@@ -200,7 +200,7 @@
       "path": "deterministic",
       "url": "https://huggingface.co/models",
       "note": "reveal hidden filter list",
-      "t": 5.996
+      "t": 16.106
     },
     {
       "i": 3,
@@ -210,7 +210,7 @@
       "path": "deterministic",
       "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=trending",
       "note": "",
-      "t": 6.142
+      "t": 17.817
     },
     {
       "i": 4,
@@ -220,7 +220,7 @@
       "path": "deterministic",
       "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=trending",
       "note": "",
-      "t": 7.832
+      "t": 20.913
     },
     {
       "i": 5,
@@ -230,7 +230,7 @@
       "path": "deterministic",
       "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
       "note": "",
-      "t": 8.569
+      "t": 22.851
     },
     {
       "i": 6,
@@ -240,7 +240,7 @@
       "path": "",
       "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
       "note": "reveal more cards (lazy-load)",
-      "t": 11.161
+      "t": 26.111
     },
     {
       "i": 7,
@@ -250,7 +250,7 @@
       "path": "",
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
       "note": "open model detail #1",
-      "t": 13.697
+      "t": 29.619
     },
     {
       "i": 8,
@@ -260,7 +260,7 @@
       "path": "",
       "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
       "note": "open model detail #2",
-      "t": 16.947
+      "t": 33.997
     },
     {
       "i": 9,
@@ -270,7 +270,7 @@
       "path": "",
       "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
       "note": "open model detail #3",
-      "t": 19.544
+      "t": 37.18
     }
   ],
   "screenshots": [
@@ -278,49 +278,49 @@
       "path": "screenshots/01_models-landing-default-trending-.png",
       "caption": "models landing (default trending sort)",
       "url": "https://huggingface.co/models",
-      "t": 5.18
+      "t": 14.822
     },
     {
       "path": "screenshots/02_after-filter-text-generation.png",
       "caption": "after filter -> Text Generation",
       "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=trending",
-      "t": 7.725
+      "t": 19.53
     },
     {
       "path": "screenshots/03_listing-text-generation-sorted-b.png",
       "caption": "listing: Text Generation sorted by Most likes",
       "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
-      "t": 10.218
+      "t": 24.556
     },
     {
       "path": "screenshots/04_after-scroll.png",
       "caption": "after scroll",
       "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
-      "t": 11.304
+      "t": 26.253
     },
     {
       "path": "screenshots/05_model-1-deepseek-ai-deepseek-r1.png",
       "caption": "model 1: deepseek-ai/DeepSeek-R1",
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
-      "t": 13.793
+      "t": 30.159
     },
     {
       "path": "screenshots/vision_marks_1.png",
       "caption": "set-of-marks vision overlay \u2014 18 candidate marks",
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
-      "t": 14.773
+      "t": 31.109
     },
     {
       "path": "screenshots/06_model-2-meta-llama-meta-llama-3-.png",
       "caption": "model 2: meta-llama/Meta-Llama-3-8B",
       "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
-      "t": 17.059
+      "t": 34.125
     },
     {
       "path": "screenshots/07_model-3-meta-llama-llama-3-1-8b-.png",
       "caption": "model 3: meta-llama/Llama-3.1-8B-Instruct",
       "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
-      "t": 19.709
+      "t": 37.34
     }
   ],
   "page_states": [
@@ -328,31 +328,31 @@
       "url": "https://huggingface.co/models",
       "title": "Models \u2013 Hugging Face",
       "note": "landing (default sort)",
-      "t": 5.042
+      "t": 13.782
     },
     {
       "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
       "title": "Text Generation Models \u2013 Hugging Face",
       "note": "filtered + sorted listing",
-      "t": 10.094
+      "t": 24.392
     },
     {
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
       "title": "deepseek-ai/DeepSeek-R1 \u00b7 Hugging Face",
       "note": "model page: deepseek-ai/DeepSeek-R1",
-      "t": 13.728
+      "t": 29.654
     },
     {
       "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
       "title": "meta-llama/Meta-Llama-3-8B \u00b7 Hugging Face",
       "note": "model page: meta-llama/Meta-Llama-3-8B",
-      "t": 16.973
+      "t": 34.029
     },
     {
       "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
       "title": "meta-llama/Llama-3.1-8B-Instruct \u00b7 Hugging Face",
       "note": "model page: meta-llama/Llama-3.1-8B-Instruct",
-      "t": 19.584
+      "t": 37.219
     }
   ],
   "path_decisions": [
@@ -467,22 +467,22 @@
   ],
   "events": [
     {
-      "t": 0.0,
+      "t": 0.001,
       "level": "warn",
       "msg": "DEMO MODE: LLM gateway responses are MOCKED offline (set ANTHROPIC_API_KEY for live calls)."
     },
     {
-      "t": 0.0,
+      "t": 0.001,
       "level": "info",
       "msg": "planner: using LLM-generated plan"
     },
     {
-      "t": 0.0,
+      "t": 0.001,
       "level": "info",
       "msg": "researcher rationale: Hugging Face's Models hub is the authoritative, JavaScript-rendered catalogue for this task; the ranking only exists after we apply the Text Generation task filter and sort by Most likes through the UI, then open each model page."
     },
     {
-      "t": 11.426,
+      "t": 26.358,
       "level": "info",
       "msg": "top-3 via 'extract': ['deepseek-ai/DeepSeek-R1', 'meta-llama/Meta-Llama-3-8B', 'meta-llama/Llama-3.1-8B-Instruct']"
     }
@@ -691,6 +691,6 @@
     "est_cost_usd": 0.010851,
     "browser_actions": 9,
     "screenshots": 8,
-    "duration_sec": 20.39
+    "duration_sec": 38.69
   }
 }
