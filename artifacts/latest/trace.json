@@ -1,0 +1,696 @@
+{
+  "goal": "Compare the top 3 Hugging Face text-generation models, ranked by likes.",
+  "run_id": "run-20260613-153622",
+  "started_at": 1781345182.132812,
+  "ended_at": 1781345202.523061,
+  "plan": {
+    "nodes": [
+      {
+        "id": "research",
+        "skill": "researcher",
+        "title": "Resolve candidate URLs",
+        "params": {},
+        "deps": []
+      },
+      {
+        "id": "browse",
+        "skill": "browser",
+        "title": "Interact (filter/sort/open) + extract via cheapest path",
+        "params": {
+          "top_n": 3
+        },
+        "deps": [
+          "research"
+        ]
+      },
+      {
+        "id": "distill",
+        "skill": "distiller",
+        "title": "Normalise into comparison rows",
+        "params": {},
+        "deps": [
+          "browse"
+        ]
+      },
+      {
+        "id": "qa",
+        "skill": "qa",
+        "title": "Validate (complete? ranked? correct task?)",
+        "params": {},
+        "deps": [
+          "distill"
+        ]
+      },
+      {
+        "id": "report",
+        "skill": "report",
+        "title": "Assemble replay viewer",
+        "params": {},
+        "deps": [
+          "qa"
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "research",
+        "browse"
+      ],
+      [
+        "browse",
+        "distill"
+      ],
+      [
+        "distill",
+        "qa"
+      ],
+      [
+        "qa",
+        "report"
+      ]
+    ]
+  },
+  "plan_mermaid": "flowchart TD\n    research[\"Resolve candidate URLs<br/><i>researcher</i>\"]\n    browse[\"Interact (filter/sort/open) + extract via cheapest path<br/><i>browser</i>\"]\n    distill[\"Normalise into comparison rows<br/><i>distiller</i>\"]\n    qa[\"Validate (complete? ranked? correct task?)<br/><i>qa</i>\"]\n    report[\"Assemble replay viewer<br/><i>report</i>\"]\n    research --> browse\n    browse --> distill\n    distill --> qa\n    qa --> report",
+  "plan_source": "llm",
+  "browser_path": "extract",
+  "paths_exercised": [
+    "deterministic",
+    "extract",
+    "a11y",
+    "vision"
+  ],
+  "steps": [
+    {
+      "node": "plan",
+      "skill": "planner",
+      "params": {
+        "goal": "Compare the top 3 Hugging Face text-generation models, ranked by likes."
+      },
+      "started": 0.0,
+      "ended": 0.0,
+      "status": "ok",
+      "summary": "5 nodes via llm"
+    },
+    {
+      "node": "research",
+      "skill": "researcher",
+      "params": {},
+      "started": 0.0,
+      "ended": 0.0,
+      "status": "ok",
+      "summary": "candidate_urls=['https://huggingface.co/models']"
+    },
+    {
+      "node": "browse",
+      "skill": "browser",
+      "params": {
+        "top_n": 3
+      },
+      "started": 0.0,
+      "ended": 20.388,
+      "status": "ok",
+      "summary": "3 model(s) collected; primary path='extract'"
+    },
+    {
+      "node": "distill",
+      "skill": "distiller",
+      "params": {},
+      "started": 20.388,
+      "ended": 20.389,
+      "status": "ok",
+      "summary": "3 comparison rows"
+    },
+    {
+      "node": "qa",
+      "skill": "qa",
+      "params": {},
+      "started": 20.389,
+      "ended": 20.389,
+      "status": "ok",
+      "summary": "QA PASS (5/5)"
+    },
+    {
+      "node": "report",
+      "skill": "report",
+      "params": {},
+      "started": 20.389,
+      "ended": 20.39,
+      "status": "ok",
+      "summary": "replay payload assembled (3 rows, 8 sections)"
+    }
+  ],
+  "llm_calls": [
+    {
+      "model": "claude-sonnet-4-6",
+      "purpose": "plan (demo)",
+      "input_tokens": 295,
+      "output_tokens": 135,
+      "cost_usd": 0.00291,
+      "t": 0.0
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "purpose": "research (demo)",
+      "input_tokens": 60,
+      "output_tokens": 57,
+      "cost_usd": 0.001035,
+      "t": 0.0
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "purpose": "vision:likes (demo)",
+      "input_tokens": 1222,
+      "output_tokens": 20,
+      "cost_usd": 0.003966,
+      "t": 14.773
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "purpose": "distill (demo)",
+      "input_tokens": 118,
+      "output_tokens": 75,
+      "cost_usd": 0.001479,
+      "t": 20.389
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "purpose": "qa (demo)",
+      "input_tokens": 157,
+      "output_tokens": 66,
+      "cost_usd": 0.001461,
+      "t": 20.389
+    }
+  ],
+  "actions": [
+    {
+      "i": 1,
+      "kind": "navigate",
+      "target": "https://huggingface.co/models",
+      "value": "",
+      "path": "",
+      "url": "https://huggingface.co/models",
+      "note": "open models listing",
+      "t": 5.016
+    },
+    {
+      "i": 2,
+      "kind": "click",
+      "target": "expand Tasks facet",
+      "value": "",
+      "path": "deterministic",
+      "url": "https://huggingface.co/models",
+      "note": "reveal hidden filter list",
+      "t": 5.996
+    },
+    {
+      "i": 3,
+      "kind": "click",
+      "target": "filter: Text Generation task",
+      "value": "a[href*='pipeline_tag=text-generation']",
+      "path": "deterministic",
+      "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=trending",
+      "note": "",
+      "t": 6.142
+    },
+    {
+      "i": 4,
+      "kind": "click",
+      "target": "open sort menu",
+      "value": "button:has-text('Trending')",
+      "path": "deterministic",
+      "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=trending",
+      "note": "",
+      "t": 7.832
+    },
+    {
+      "i": 5,
+      "kind": "click",
+      "target": "sort: Most likes",
+      "value": "text=Most likes",
+      "path": "deterministic",
+      "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
+      "note": "",
+      "t": 8.569
+    },
+    {
+      "i": 6,
+      "kind": "scroll",
+      "target": "",
+      "value": "1600",
+      "path": "",
+      "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
+      "note": "reveal more cards (lazy-load)",
+      "t": 11.161
+    },
+    {
+      "i": 7,
+      "kind": "navigate",
+      "target": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "value": "",
+      "path": "",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "note": "open model detail #1",
+      "t": 13.697
+    },
+    {
+      "i": 8,
+      "kind": "navigate",
+      "target": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+      "value": "",
+      "path": "",
+      "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+      "note": "open model detail #2",
+      "t": 16.947
+    },
+    {
+      "i": 9,
+      "kind": "navigate",
+      "target": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+      "value": "",
+      "path": "",
+      "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+      "note": "open model detail #3",
+      "t": 19.544
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "screenshots/01_models-landing-default-trending-.png",
+      "caption": "models landing (default trending sort)",
+      "url": "https://huggingface.co/models",
+      "t": 5.18
+    },
+    {
+      "path": "screenshots/02_after-filter-text-generation.png",
+      "caption": "after filter -> Text Generation",
+      "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=trending",
+      "t": 7.725
+    },
+    {
+      "path": "screenshots/03_listing-text-generation-sorted-b.png",
+      "caption": "listing: Text Generation sorted by Most likes",
+      "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
+      "t": 10.218
+    },
+    {
+      "path": "screenshots/04_after-scroll.png",
+      "caption": "after scroll",
+      "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
+      "t": 11.304
+    },
+    {
+      "path": "screenshots/05_model-1-deepseek-ai-deepseek-r1.png",
+      "caption": "model 1: deepseek-ai/DeepSeek-R1",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "t": 13.793
+    },
+    {
+      "path": "screenshots/vision_marks_1.png",
+      "caption": "set-of-marks vision overlay \u2014 18 candidate marks",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "t": 14.773
+    },
+    {
+      "path": "screenshots/06_model-2-meta-llama-meta-llama-3-.png",
+      "caption": "model 2: meta-llama/Meta-Llama-3-8B",
+      "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+      "t": 17.059
+    },
+    {
+      "path": "screenshots/07_model-3-meta-llama-llama-3-1-8b-.png",
+      "caption": "model 3: meta-llama/Llama-3.1-8B-Instruct",
+      "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+      "t": 19.709
+    }
+  ],
+  "page_states": [
+    {
+      "url": "https://huggingface.co/models",
+      "title": "Models \u2013 Hugging Face",
+      "note": "landing (default sort)",
+      "t": 5.042
+    },
+    {
+      "url": "https://huggingface.co/models?pipeline_tag=text-generation&sort=likes",
+      "title": "Text Generation Models \u2013 Hugging Face",
+      "note": "filtered + sorted listing",
+      "t": 10.094
+    },
+    {
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "title": "deepseek-ai/DeepSeek-R1 \u00b7 Hugging Face",
+      "note": "model page: deepseek-ai/DeepSeek-R1",
+      "t": 13.728
+    },
+    {
+      "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+      "title": "meta-llama/Meta-Llama-3-8B \u00b7 Hugging Face",
+      "note": "model page: meta-llama/Meta-Llama-3-8B",
+      "t": 16.973
+    },
+    {
+      "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+      "title": "meta-llama/Llama-3.1-8B-Instruct \u00b7 Hugging Face",
+      "note": "model page: meta-llama/Llama-3.1-8B-Instruct",
+      "t": 19.584
+    }
+  ],
+  "path_decisions": [
+    {
+      "intent": "filter: Text Generation task",
+      "attempts": [
+        {
+          "path": "deterministic",
+          "ok": true,
+          "note": "css a[href*='pipeline_tag=text-generation']"
+        }
+      ],
+      "chosen": "deterministic",
+      "primary": false
+    },
+    {
+      "intent": "open sort menu",
+      "attempts": [
+        {
+          "path": "deterministic",
+          "ok": true,
+          "note": "css button:has-text('Trending')"
+        }
+      ],
+      "chosen": "deterministic",
+      "primary": false
+    },
+    {
+      "intent": "sort: Most likes",
+      "attempts": [
+        {
+          "path": "deterministic",
+          "ok": true,
+          "note": "css text=Most likes"
+        }
+      ],
+      "chosen": "deterministic",
+      "primary": false
+    },
+    {
+      "intent": "listing: top-3 model ids (sorted by Most likes)",
+      "attempts": [
+        {
+          "path": "extract",
+          "ok": true,
+          "note": "list[3]"
+        }
+      ],
+      "chosen": "extract",
+      "primary": true
+    },
+    {
+      "intent": "model detail fields: deepseek-ai/DeepSeek-R1",
+      "attempts": [
+        {
+          "path": "extract",
+          "ok": true,
+          "note": "dict{id,likes,downloads_last_month,downloads_all_time,pipeline_tag,library}"
+        }
+      ],
+      "chosen": "extract",
+      "primary": true
+    },
+    {
+      "intent": "a11y capability check: likes for deepseek-ai/DeepSeek-R1",
+      "attempts": [
+        {
+          "path": "a11y",
+          "ok": true,
+          "note": "read 13.4k via role=button[3]"
+        }
+      ],
+      "chosen": "a11y",
+      "primary": false
+    },
+    {
+      "intent": "vision capability check: likes for deepseek-ai/DeepSeek-R1",
+      "attempts": [
+        {
+          "path": "vision",
+          "ok": true,
+          "note": "set-of-marks LLM read likes=13387"
+        }
+      ],
+      "chosen": "vision",
+      "primary": false
+    },
+    {
+      "intent": "model detail fields: meta-llama/Meta-Llama-3-8B",
+      "attempts": [
+        {
+          "path": "extract",
+          "ok": true,
+          "note": "dict{id,likes,downloads_last_month,downloads_all_time,pipeline_tag,library}"
+        }
+      ],
+      "chosen": "extract",
+      "primary": true
+    },
+    {
+      "intent": "model detail fields: meta-llama/Llama-3.1-8B-Instruct",
+      "attempts": [
+        {
+          "path": "extract",
+          "ok": true,
+          "note": "dict{id,likes,downloads_last_month,downloads_all_time,pipeline_tag,library}"
+        }
+      ],
+      "chosen": "extract",
+      "primary": true
+    }
+  ],
+  "events": [
+    {
+      "t": 0.0,
+      "level": "warn",
+      "msg": "DEMO MODE: LLM gateway responses are MOCKED offline (set ANTHROPIC_API_KEY for live calls)."
+    },
+    {
+      "t": 0.0,
+      "level": "info",
+      "msg": "planner: using LLM-generated plan"
+    },
+    {
+      "t": 0.0,
+      "level": "info",
+      "msg": "researcher rationale: Hugging Face's Models hub is the authoritative, JavaScript-rendered catalogue for this task; the ranking only exists after we apply the Text Generation task filter and sort by Most likes through the UI, then open each model page."
+    },
+    {
+      "t": 11.426,
+      "level": "info",
+      "msg": "top-3 via 'extract': ['deepseek-ai/DeepSeek-R1', 'meta-llama/Meta-Llama-3-8B', 'meta-llama/Llama-3.1-8B-Instruct']"
+    }
+  ],
+  "final": {
+    "raw_records": [
+      {
+        "rank": 1,
+        "id": "deepseek-ai/DeepSeek-R1",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+        "source_path": "extract",
+        "card_text": "deepseek-ai/DeepSeek-R1 Text Generation \u2022 685B \u2022 Updated Mar 27, 2025 \u2022 4.35M \u2022 \u2022 13.4k",
+        "likes": 13387,
+        "downloads_last_month": 4349631,
+        "downloads_all_time": 27738105,
+        "pipeline_tag": "text-generation",
+        "library": "transformers",
+        "license": "mit",
+        "params": "685B",
+        "last_modified": "2025-03-27",
+        "created_at": "2025-01-20",
+        "tags": [
+          "transformers",
+          "safetensors",
+          "deepseek_v3",
+          "text-generation",
+          "conversational",
+          "custom_code",
+          "arxiv:2501.12948",
+          "license:mit",
+          "eval-results",
+          "text-generation-inference"
+        ],
+        "likes_a11y": 13400,
+        "likes_vision": "13387"
+      },
+      {
+        "rank": 2,
+        "id": "meta-llama/Meta-Llama-3-8B",
+        "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+        "source_path": "extract",
+        "card_text": "meta-llama/Meta-Llama-3-8B Text Generation \u2022 8B \u2022 Updated Sep 27, 2024 \u2022 915k \u2022 \u2022 6.57k",
+        "likes": 6572,
+        "downloads_last_month": 915357,
+        "downloads_all_time": 42926383,
+        "pipeline_tag": "text-generation",
+        "library": "transformers",
+        "license": "llama3",
+        "params": "8.0B",
+        "last_modified": "2024-09-27",
+        "created_at": "2024-04-17",
+        "tags": [
+          "transformers",
+          "safetensors",
+          "llama",
+          "text-generation",
+          "facebook",
+          "meta",
+          "pytorch",
+          "llama-3",
+          "en",
+          "license:llama3"
+        ]
+      },
+      {
+        "rank": 3,
+        "id": "meta-llama/Llama-3.1-8B-Instruct",
+        "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+        "source_path": "extract",
+        "card_text": "meta-llama/Llama-3.1-8B-Instruct Text Generation \u2022 8B \u2022 Updated Sep 25, 2024 \u2022 6.91M \u2022 \u2022 6.07k",
+        "likes": 6066,
+        "downloads_last_month": 6906531,
+        "downloads_all_time": 155915803,
+        "pipeline_tag": "text-generation",
+        "library": "transformers",
+        "license": "llama3.1",
+        "params": "8.0B",
+        "last_modified": "2024-09-25",
+        "created_at": "2024-07-18",
+        "tags": [
+          "transformers",
+          "safetensors",
+          "llama",
+          "text-generation",
+          "facebook",
+          "meta",
+          "pytorch",
+          "llama-3",
+          "conversational",
+          "en"
+        ]
+      }
+    ],
+    "comparison": {
+      "columns": [
+        {
+          "key": "rank",
+          "label": "#"
+        },
+        {
+          "key": "id",
+          "label": "Model"
+        },
+        {
+          "key": "likes",
+          "label": "Likes"
+        },
+        {
+          "key": "downloads",
+          "label": "Downloads/mo"
+        },
+        {
+          "key": "params",
+          "label": "Params"
+        },
+        {
+          "key": "license",
+          "label": "License"
+        },
+        {
+          "key": "task",
+          "label": "Task"
+        },
+        {
+          "key": "updated",
+          "label": "Updated"
+        }
+      ],
+      "rows": [
+        {
+          "rank": 1,
+          "id": "deepseek-ai/DeepSeek-R1",
+          "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+          "likes": "13,387",
+          "downloads": "4.3M",
+          "params": "685B",
+          "license": "mit",
+          "task": "text-generation",
+          "updated": "2025-03-27"
+        },
+        {
+          "rank": 2,
+          "id": "meta-llama/Meta-Llama-3-8B",
+          "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+          "likes": "6,572",
+          "downloads": "915K",
+          "params": "8.0B",
+          "license": "llama3",
+          "task": "text-generation",
+          "updated": "2024-09-27"
+        },
+        {
+          "rank": 3,
+          "id": "meta-llama/Llama-3.1-8B-Instruct",
+          "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+          "likes": "6,066",
+          "downloads": "6.9M",
+          "params": "8.0B",
+          "license": "llama3.1",
+          "task": "text-generation",
+          "updated": "2024-09-25"
+        }
+      ],
+      "winner": "deepseek-ai/DeepSeek-R1 (13,387 likes)",
+      "notes": "deepseek-ai/DeepSeek-R1 is the clear community favourite with 13,387 likes, ahead of meta-llama/Meta-Llama-3-8B, meta-llama/Llama-3.1-8B-Instruct. The shortlist spans 8.0B\u2013685B parameters across llama3, llama3.1, mit licenses, so the most-liked model is not necessarily the smallest or most-downloaded."
+    },
+    "qa": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "collected models (target 3)",
+          "ok": true,
+          "detail": "3 model(s) collected"
+        },
+        {
+          "name": "every model has a likes value",
+          "ok": true,
+          "detail": "all present"
+        },
+        {
+          "name": "correctly ranked by likes (descending)",
+          "ok": true,
+          "detail": "13,387 \u2265 6,572 \u2265 6,066"
+        },
+        {
+          "name": "all models are 'text-generation'",
+          "ok": true,
+          "detail": "text-generation"
+        },
+        {
+          "name": "cross-path likes agree (extract vs a11y/vision)",
+          "ok": true,
+          "detail": "extract=13,387 \u00b7 a11y=13400 \u00b7 vision=13387"
+        }
+      ],
+      "critique": "All structural checks pass: the requested number of text-generation models were collected, correctly ranked by descending likes, with cross-path agreement between the static-extract and accessibility readings. The comparison is trustworthy for ranking by popularity."
+    },
+    "llm_mode": "demo"
+  },
+  "totals": {
+    "turns": 6,
+    "llm_calls": 5,
+    "input_tokens": 1852,
+    "output_tokens": 353,
+    "total_tokens": 2205,
+    "est_cost_usd": 0.010851,
+    "browser_actions": 9,
+    "screenshots": 8,
+    "duration_sec": 20.39
+  }
+}

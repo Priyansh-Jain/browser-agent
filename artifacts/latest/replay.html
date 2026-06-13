@@ -1,0 +1,174 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Replay — Compare the top 3 Hugging Face text-generation models, ranke</title>
+<style>
+:root{--bg:#0b1020;--card:#141b30;--mut:#8aa0c6;--bd:#243154;--tx:#e7edf8;--ac:#5b9dff}
+*{box-sizing:border-box}body{margin:0;font:15px/1.55 -apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--tx)}
+.wrap{max-width:1140px;margin:0 auto;padding:24px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:18px;margin:30px 0 10px;border-bottom:1px solid var(--bd);padding-bottom:6px}
+.goal{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);padding:12px 16px;border-radius:10px;margin:10px 0}
+.sub{color:var(--mut);font-size:13px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 16px;min-width:104px;text-align:center}
+.stat .n{font-size:22px;font-weight:700}.stat .l{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--bd);border-radius:10px;overflow:hidden;font-size:13.5px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
+th{background:#0f1730;color:var(--mut);text-transform:uppercase;font-size:11px;letter-spacing:.05em}
+tr:last-child td{border-bottom:none}.u{color:var(--mut);font-size:12px;word-break:break-all}
+.badge{display:inline-block;color:#fff;border-radius:20px;padding:1px 10px;font-size:12px;font-weight:600}
+.lad{display:inline-block;border-radius:6px;padding:1px 7px;margin:1px;font-size:12px;border:1px solid var(--bd)}
+.lad.ok{color:#7ef0a6;border-color:#1f6e42}.lad.no{color:#ff9b9b;border-color:#6e2020}
+.note{color:var(--mut);font-size:11px;margin:0 6px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+figure{margin:0;background:var(--card);border:1px solid var(--bd);border-radius:10px;overflow:hidden}
+figure img{width:100%;display:block;border-bottom:1px solid var(--bd)}
+figcaption{padding:8px 10px;font-size:12.5px}
+pre{background:#0a1226;border:1px solid var(--bd);border-radius:10px;padding:14px;overflow:auto;font-size:12.5px}
+.mermaid{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px}
+.verdict{font-size:18px;font-weight:700;margin:6px 0}
+.ev{font:12px/1.5 ui-monospace,Menlo,monospace;color:var(--mut)}.ev.warn{color:#ffce7a}.ev.error{color:#ff9b9b}
+details{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 14px;margin:8px 0}
+a{color:var(--ac)}
+</style></head><body><div class="wrap">
+<h1>🛰️ Browser-Agent Replay</h1>
+<div class="sub">run <code>run-20260613-153622</code> · plan source <b>llm</b> · primary path <span class="badge" style="background:#16a34a">extract</span></div>
+
+<h2>1 · Original user goal</h2>
+<div class="goal">Compare the top 3 Hugging Face text-generation models, ranked by likes.</div>
+<div class="stats"><div class="stat"><div class="n">6</div><div class="l">turns</div></div><div class="stat"><div class="n">9</div><div class="l">browser actions</div></div><div class="stat"><div class="n">8</div><div class="l">screenshots</div></div><div class="stat"><div class="n">5</div><div class="l">LLM calls</div></div><div class="stat"><div class="n">2,205</div><div class="l">tokens</div></div><div class="stat"><div class="n">$0.0109</div><div class="l">est. cost</div></div><div class="stat"><div class="n">20.39</div><div class="l">seconds</div></div></div>
+
+<h2>2 · Planner DAG</h2>
+<pre class="mermaid">flowchart TD
+    research[&quot;Resolve candidate URLs&lt;br/&gt;&lt;i&gt;researcher&lt;/i&gt;&quot;]
+    browse[&quot;Interact (filter/sort/open) + extract via cheapest path&lt;br/&gt;&lt;i&gt;browser&lt;/i&gt;&quot;]
+    distill[&quot;Normalise into comparison rows&lt;br/&gt;&lt;i&gt;distiller&lt;/i&gt;&quot;]
+    qa[&quot;Validate (complete? ranked? correct task?)&lt;br/&gt;&lt;i&gt;qa&lt;/i&gt;&quot;]
+    report[&quot;Assemble replay viewer&lt;br/&gt;&lt;i&gt;report&lt;/i&gt;&quot;]
+    research --&gt; browse
+    browse --&gt; distill
+    distill --&gt; qa
+    qa --&gt; report</pre>
+
+<h2>3 · Browser path chosen — “cheapest correct path?”</h2>
+<p>Primary data path: <span class="badge" style="background:#16a34a">extract</span> &nbsp; Paths exercised: <span class="badge" style="background:#2563eb">deterministic</span> <span class="badge" style="background:#16a34a">extract</span> <span class="badge" style="background:#9333ea">a11y</span> <span class="badge" style="background:#e11d48">vision</span></p>
+<table><thead><tr><th>Intent</th><th>Chosen</th><th>Cascade ladder (cheap → costly)</th></tr></thead><tbody><tr><td>filter: Text Generation task</td><td><span class="badge" style="background:#2563eb">deterministic</span></td><td><span class="lad ok">deterministic</span><span class="note">css a[href*=&#x27;pipeline_tag=text-generation&#x27;]</span></td></tr><tr><td>open sort menu</td><td><span class="badge" style="background:#2563eb">deterministic</span></td><td><span class="lad ok">deterministic</span><span class="note">css button:has-text(&#x27;Trending&#x27;)</span></td></tr><tr><td>sort: Most likes</td><td><span class="badge" style="background:#2563eb">deterministic</span></td><td><span class="lad ok">deterministic</span><span class="note">css text=Most likes</span></td></tr><tr><td>listing: top-3 model ids (sorted by Most likes) ⭐</td><td><span class="badge" style="background:#16a34a">extract</span></td><td><span class="lad ok">extract</span><span class="note">list[3]</span></td></tr><tr><td>model detail fields: deepseek-ai/DeepSeek-R1 ⭐</td><td><span class="badge" style="background:#16a34a">extract</span></td><td><span class="lad ok">extract</span><span class="note">dict{id,likes,downloads_last_month,downloads_all_time,pipeline_tag,library}</span></td></tr><tr><td>a11y capability check: likes for deepseek-ai/DeepSeek-R1</td><td><span class="badge" style="background:#9333ea">a11y</span></td><td><span class="lad ok">a11y</span><span class="note">read 13.4k via role=button[3]</span></td></tr><tr><td>vision capability check: likes for deepseek-ai/DeepSeek-R1</td><td><span class="badge" style="background:#e11d48">vision</span></td><td><span class="lad ok">vision</span><span class="note">set-of-marks LLM read likes=13387</span></td></tr><tr><td>model detail fields: meta-llama/Meta-Llama-3-8B ⭐</td><td><span class="badge" style="background:#16a34a">extract</span></td><td><span class="lad ok">extract</span><span class="note">dict{id,likes,downloads_last_month,downloads_all_time,pipeline_tag,library}</span></td></tr><tr><td>model detail fields: meta-llama/Llama-3.1-8B-Instruct ⭐</td><td><span class="badge" style="background:#16a34a">extract</span></td><td><span class="lad ok">extract</span><span class="note">dict{id,likes,downloads_last_month,downloads_all_time,pipeline_tag,library}</span></td></tr></tbody></table>
+
+<h2>4 · Browser actions taken</h2>
+<table><thead><tr><th>#</th><th>Action</th><th>Path</th><th>Target</th><th>Detail</th><th>URL</th></tr></thead><tbody><tr><td>1</td><td><b>navigate</b></td><td><span class="badge" style="background:#6b7280">n/a</span></td><td>https://huggingface.co/models</td><td>open models listing</td><td class='u'>huggingface.co/models</td></tr><tr><td>2</td><td><b>click</b></td><td><span class="badge" style="background:#2563eb">deterministic</span></td><td>expand Tasks facet</td><td>reveal hidden filter list</td><td class='u'>huggingface.co/models</td></tr><tr><td>3</td><td><b>click</b></td><td><span class="badge" style="background:#2563eb">deterministic</span></td><td>filter: Text Generation task</td><td>a[href*=&#x27;pipeline_tag=text-generation&#x27;]</td><td class='u'>huggingface.co/models?pipeline_tag=text-generation&amp;sort=trending</td></tr><tr><td>4</td><td><b>click</b></td><td><span class="badge" style="background:#2563eb">deterministic</span></td><td>open sort menu</td><td>button:has-text(&#x27;Trending&#x27;)</td><td class='u'>huggingface.co/models?pipeline_tag=text-generation&amp;sort=trending</td></tr><tr><td>5</td><td><b>click</b></td><td><span class="badge" style="background:#2563eb">deterministic</span></td><td>sort: Most likes</td><td>text=Most likes</td><td class='u'>huggingface.co/models?pipeline_tag=text-generation&amp;sort=likes</td></tr><tr><td>6</td><td><b>scroll</b></td><td><span class="badge" style="background:#6b7280">n/a</span></td><td></td><td>1600</td><td class='u'>huggingface.co/models?pipeline_tag=text-generation&amp;sort=likes</td></tr><tr><td>7</td><td><b>navigate</b></td><td><span class="badge" style="background:#6b7280">n/a</span></td><td>https://huggingface.co/deepseek-ai/DeepSeek-R1</td><td>open model detail #1</td><td class='u'>huggingface.co/deepseek-ai/DeepSeek-R1</td></tr><tr><td>8</td><td><b>navigate</b></td><td><span class="badge" style="background:#6b7280">n/a</span></td><td>https://huggingface.co/meta-llama/Meta-Llama-3-8B</td><td>open model detail #2</td><td class='u'>huggingface.co/meta-llama/Meta-Llama-3-8B</td></tr><tr><td>9</td><td><b>navigate</b></td><td><span class="badge" style="background:#6b7280">n/a</span></td><td>https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct</td><td>open model detail #3</td><td class='u'>huggingface.co/meta-llama/Llama-3.1-8B-Instruct</td></tr></tbody></table>
+
+<h2>5 · Screenshots &amp; page-state log</h2>
+<div class="gallery"><figure><img src="screenshots/01_models-landing-default-trending-.png" loading="lazy"/><figcaption>models landing (default trending sort)<br><span class="u">huggingface.co/models</span></figcaption></figure><figure><img src="screenshots/02_after-filter-text-generation.png" loading="lazy"/><figcaption>after filter -&gt; Text Generation<br><span class="u">huggingface.co/models?pipeline_tag=text-generation&amp;sort=trending</span></figcaption></figure><figure><img src="screenshots/03_listing-text-generation-sorted-b.png" loading="lazy"/><figcaption>listing: Text Generation sorted by Most likes<br><span class="u">huggingface.co/models?pipeline_tag=text-generation&amp;sort=likes</span></figcaption></figure><figure><img src="screenshots/04_after-scroll.png" loading="lazy"/><figcaption>after scroll<br><span class="u">huggingface.co/models?pipeline_tag=text-generation&amp;sort=likes</span></figcaption></figure><figure><img src="screenshots/05_model-1-deepseek-ai-deepseek-r1.png" loading="lazy"/><figcaption>model 1: deepseek-ai/DeepSeek-R1<br><span class="u">huggingface.co/deepseek-ai/DeepSeek-R1</span></figcaption></figure><figure><img src="screenshots/vision_marks_1.png" loading="lazy"/><figcaption>set-of-marks vision overlay — 18 candidate marks<br><span class="u">huggingface.co/deepseek-ai/DeepSeek-R1</span></figcaption></figure><figure><img src="screenshots/06_model-2-meta-llama-meta-llama-3-.png" loading="lazy"/><figcaption>model 2: meta-llama/Meta-Llama-3-8B<br><span class="u">huggingface.co/meta-llama/Meta-Llama-3-8B</span></figcaption></figure><figure><img src="screenshots/07_model-3-meta-llama-llama-3-1-8b-.png" loading="lazy"/><figcaption>model 3: meta-llama/Llama-3.1-8B-Instruct<br><span class="u">huggingface.co/meta-llama/Llama-3.1-8B-Instruct</span></figcaption></figure></div>
+<h3 class="sub">page-state log</h3>
+<table><thead><tr><th>t(s)</th><th>URL</th><th>Title</th><th>Note</th></tr></thead><tbody><tr><td>5.042</td><td class='u'>huggingface.co/models</td><td>Models – Hugging Face</td><td>landing (default sort)</td></tr><tr><td>10.094</td><td class='u'>huggingface.co/models?pipeline_tag=text-generation&amp;sort=likes</td><td>Text Generation Models – Hugging Face</td><td>filtered + sorted listing</td></tr><tr><td>13.728</td><td class='u'>huggingface.co/deepseek-ai/DeepSeek-R1</td><td>deepseek-ai/DeepSeek-R1 · Hugging Face</td><td>model page: deepseek-ai/DeepSeek-R1</td></tr><tr><td>16.973</td><td class='u'>huggingface.co/meta-llama/Meta-Llama-3-8B</td><td>meta-llama/Meta-Llama-3-8B · Hugging Face</td><td>model page: meta-llama/Meta-Llama-3-8B</td></tr><tr><td>19.584</td><td class='u'>huggingface.co/meta-llama/Llama-3.1-8B-Instruct</td><td>meta-llama/Llama-3.1-8B-Instruct · Hugging Face</td><td>model page: meta-llama/Llama-3.1-8B-Instruct</td></tr></tbody></table>
+
+<h2>6 · Extracted data (raw, per model)</h2>
+<pre>[
+  {
+    &quot;rank&quot;: 1,
+    &quot;id&quot;: &quot;deepseek-ai/DeepSeek-R1&quot;,
+    &quot;url&quot;: &quot;https://huggingface.co/deepseek-ai/DeepSeek-R1&quot;,
+    &quot;source_path&quot;: &quot;extract&quot;,
+    &quot;card_text&quot;: &quot;deepseek-ai/DeepSeek-R1 Text Generation \u2022 685B \u2022 Updated Mar 27, 2025 \u2022 4.35M \u2022 \u2022 13.4k&quot;,
+    &quot;likes&quot;: 13387,
+    &quot;downloads_last_month&quot;: 4349631,
+    &quot;downloads_all_time&quot;: 27738105,
+    &quot;pipeline_tag&quot;: &quot;text-generation&quot;,
+    &quot;library&quot;: &quot;transformers&quot;,
+    &quot;license&quot;: &quot;mit&quot;,
+    &quot;params&quot;: &quot;685B&quot;,
+    &quot;last_modified&quot;: &quot;2025-03-27&quot;,
+    &quot;created_at&quot;: &quot;2025-01-20&quot;,
+    &quot;tags&quot;: [
+      &quot;transformers&quot;,
+      &quot;safetensors&quot;,
+      &quot;deepseek_v3&quot;,
+      &quot;text-generation&quot;,
+      &quot;conversational&quot;,
+      &quot;custom_code&quot;,
+      &quot;arxiv:2501.12948&quot;,
+      &quot;license:mit&quot;,
+      &quot;eval-results&quot;,
+      &quot;text-generation-inference&quot;
+    ],
+    &quot;likes_a11y&quot;: 13400,
+    &quot;likes_vision&quot;: &quot;13387&quot;
+  },
+  {
+    &quot;rank&quot;: 2,
+    &quot;id&quot;: &quot;meta-llama/Meta-Llama-3-8B&quot;,
+    &quot;url&quot;: &quot;https://huggingface.co/meta-llama/Meta-Llama-3-8B&quot;,
+    &quot;source_path&quot;: &quot;extract&quot;,
+    &quot;card_text&quot;: &quot;meta-llama/Meta-Llama-3-8B Text Generation \u2022 8B \u2022 Updated Sep 27, 2024 \u2022 915k \u2022 \u2022 6.57k&quot;,
+    &quot;likes&quot;: 6572,
+    &quot;downloads_last_month&quot;: 915357,
+    &quot;downloads_all_time&quot;: 42926383,
+    &quot;pipeline_tag&quot;: &quot;text-generation&quot;,
+    &quot;library&quot;: &quot;transformers&quot;,
+    &quot;license&quot;: &quot;llama3&quot;,
+    &quot;params&quot;: &quot;8.0B&quot;,
+    &quot;last_modified&quot;: &quot;2024-09-27&quot;,
+    &quot;created_at&quot;: &quot;2024-04-17&quot;,
+    &quot;tags&quot;: [
+      &quot;transformers&quot;,
+      &quot;safetensors&quot;,
+      &quot;llama&quot;,
+      &quot;text-generation&quot;,
+      &quot;facebook&quot;,
+      &quot;meta&quot;,
+      &quot;pytorch&quot;,
+      &quot;llama-3&quot;,
+      &quot;en&quot;,
+      &quot;license:llama3&quot;
+    ]
+  },
+  {
+    &quot;rank&quot;: 3,
+    &quot;id&quot;: &quot;meta-llama/Llama-3.1-8B-Instruct&quot;,
+    &quot;url&quot;: &quot;https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct&quot;,
+    &quot;source_path&quot;: &quot;extract&quot;,
+    &quot;card_text&quot;: &quot;meta-llama/Llama-3.1-8B-Instruct Text Generation \u2022 8B \u2022 Updated Sep 25, 2024 \u2022 6.91M \u2022 \u2022 6.07k&quot;,
+    &quot;likes&quot;: 6066,
+    &quot;downloads_last_month&quot;: 6906531,
+    &quot;downloads_all_time&quot;: 155915803,
+    &quot;pipeline_tag&quot;: &quot;text-generation&quot;,
+    &quot;library&quot;: &quot;transformers&quot;,
+    &quot;license&quot;: &quot;llama3.1&quot;,
+    &quot;params&quot;: &quot;8.0B&quot;,
+    &quot;last_modified&quot;: &quot;2024-09-25&quot;,
+    &quot;created_at&quot;: &quot;2024-07-18&quot;,
+    &quot;tags&quot;: [
+      &quot;transformers&quot;,
+      &quot;safetensors&quot;,
+      &quot;llama&quot;,
+      &quot;text-generation&quot;,
+      &quot;facebook&quot;,
+      &quot;meta&quot;,
+      &quot;pytorch&quot;,
+      &quot;llama-3&quot;,
+      &quot;conversational&quot;,
+      &quot;en&quot;
+    ]
+  }
+]</pre>
+
+<h2>7 · Final comparison table</h2>
+<table><thead><tr><th>#</th><th>Model</th><th>Likes</th><th>Downloads/mo</th><th>Params</th><th>License</th><th>Task</th><th>Updated</th></tr></thead><tbody><tr><td>1</td><td><a href="https://huggingface.co/deepseek-ai/DeepSeek-R1" target="_blank">deepseek-ai/DeepSeek-R1</a></td><td>13,387</td><td>4.3M</td><td>685B</td><td>mit</td><td>text-generation</td><td>2025-03-27</td></tr><tr><td>2</td><td><a href="https://huggingface.co/meta-llama/Meta-Llama-3-8B" target="_blank">meta-llama/Meta-Llama-3-8B</a></td><td>6,572</td><td>915K</td><td>8.0B</td><td>llama3</td><td>text-generation</td><td>2024-09-27</td></tr><tr><td>3</td><td><a href="https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct" target="_blank">meta-llama/Llama-3.1-8B-Instruct</a></td><td>6,066</td><td>6.9M</td><td>8.0B</td><td>llama3.1</td><td>text-generation</td><td>2024-09-25</td></tr></tbody></table>
+<p class="sub">🏆 deepseek-ai/DeepSeek-R1 (13,387 likes)<br>deepseek-ai/DeepSeek-R1 is the clear community favourite with 13,387 likes, ahead of meta-llama/Meta-Llama-3-8B, meta-llama/Llama-3.1-8B-Instruct. The shortlist spans 8.0B–685B parameters across llama3, llama3.1, mit licenses, so the most-liked model is not necessarily the smallest or most-downloaded.</p>
+
+<h2>8 · Turn count &amp; cost summary</h2>
+<div class="stats"><div class="stat"><div class="n">6</div><div class="l">turns</div></div><div class="stat"><div class="n">9</div><div class="l">browser actions</div></div><div class="stat"><div class="n">8</div><div class="l">screenshots</div></div><div class="stat"><div class="n">5</div><div class="l">LLM calls</div></div><div class="stat"><div class="n">2,205</div><div class="l">tokens</div></div><div class="stat"><div class="n">$0.0109</div><div class="l">est. cost</div></div><div class="stat"><div class="n">20.39</div><div class="l">seconds</div></div></div>
+<table><thead><tr><th>Purpose</th><th>Model</th><th>In</th><th>Out</th><th>Cost</th></tr></thead><tbody><tr><td>plan (demo)</td><td>claude-sonnet-4-6</td><td>295</td><td>135</td><td>$0.00291</td></tr><tr><td>research (demo)</td><td>claude-sonnet-4-6</td><td>60</td><td>57</td><td>$0.00103</td></tr><tr><td>vision:likes (demo)</td><td>claude-sonnet-4-6</td><td>1222</td><td>20</td><td>$0.00397</td></tr><tr><td>distill (demo)</td><td>claude-sonnet-4-6</td><td>118</td><td>75</td><td>$0.00148</td></tr><tr><td>qa (demo)</td><td>claude-sonnet-4-6</td><td>157</td><td>66</td><td>$0.00146</td></tr></tbody></table>
+<p class="sub">ℹ️ LLM calls used the offline <b>demo gateway</b> (mocked responses); tokens &amp; cost are estimated from listed prices. Set <code>ANTHROPIC_API_KEY</code> for live calls.</p>
+
+<h2>QA / Critic — verdict: ✅ PASS</h2>
+<table><thead><tr><th>Check</th><th>OK</th><th>Detail</th></tr></thead><tbody><tr><td>collected models (target 3)</td><td>✅</td><td>3 model(s) collected</td></tr><tr><td>every model has a likes value</td><td>✅</td><td>all present</td></tr><tr><td>correctly ranked by likes (descending)</td><td>✅</td><td>13,387 ≥ 6,572 ≥ 6,066</td></tr><tr><td>all models are &#x27;text-generation&#x27;</td><td>✅</td><td>text-generation</td></tr><tr><td>cross-path likes agree (extract vs a11y/vision)</td><td>✅</td><td>extract=13,387 · a11y=13400 · vision=13387</td></tr></tbody></table>
+<p class="sub">All structural checks pass: the requested number of text-generation models were collected, correctly ranked by descending likes, with cross-path agreement between the static-extract and accessibility readings. The comparison is trustworthy for ranking by popularity.</p>
+
+<details><summary>Event log (4)</summary><div class='ev warn'>[0.0s] DEMO MODE: LLM gateway responses are MOCKED offline (set ANTHROPIC_API_KEY for live calls).</div><div class='ev info'>[0.0s] planner: using LLM-generated plan</div><div class='ev info'>[0.0s] researcher rationale: Hugging Face&#x27;s Models hub is the authoritative, JavaScript-rendered catalogue for this task; the ranking only exists after we apply the Text Generation task filter and sort by Most likes through the UI, then open each model page.</div><div class='ev info'>[11.426s] top-3 via &#x27;extract&#x27;: [&#x27;deepseek-ai/DeepSeek-R1&#x27;, &#x27;meta-llama/Meta-Llama-3-8B&#x27;, &#x27;meta-llama/Llama-3.1-8B-Instruct&#x27;]</div></details>
+<p class="sub" style="margin-top:24px">Generated by browser-agent · llm_gatewayV9 / Session9Code · open <code>trace.zip</code> with <code>playwright show-trace</code> for frame-by-frame replay.</p>
+</div>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({startOnLoad:true, theme:'dark'});
+</script>
+</body></html>

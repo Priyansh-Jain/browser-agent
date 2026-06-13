@@ -1,0 +1,6 @@
+playwright>=1.40
+anthropic>=0.39
+beautifulsoup4>=4.12
+lxml>=4.9
+pillow>=10.0
+python-dotenv>=1.0

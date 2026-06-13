@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+
+# Per-run outputs are regenerated; only the mirrored latest run is committed
+# (so the README renders its screenshots on GitHub).
+artifacts/run-*/
+!artifacts/latest/
