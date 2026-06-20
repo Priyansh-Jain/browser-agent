@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>CU Canvas Target</title>
+<style>
+  body{margin:0;background:#0f1226;color:#9aa7c7;font:15px -apple-system,Segoe UI,Arial;
+       display:flex;flex-direction:column;align-items:center;padding:18px}
+  h1{font-size:16px;font-weight:600;margin:6px 0 12px;color:#c9d4ee}
+  #c{background:#161a33;border:1px solid #2a335c;border-radius:14px}
+  .hint{font-size:12px;color:#5f6b8f;margin-top:10px}
+</style></head>
+<body>
+  <h1>Computer-Use Canvas Target — click the tile that shows the number</h1>
+  <canvas id="c" width="360" height="360"></canvas>
+  <div class="hint">canvas-only rendering · no DOM text · no ARIA — the value exists only as pixels</div>
+<script>
+(function () {
+  // Deterministic: the rendered number + target tile come from the URL, so the
+  // task knows ground truth while the agent must READ it from pixels (vision).
+  const p = new URLSearchParams(location.search);
+  const value = (p.get('n') || '7');
+  const target = parseInt(p.get('tile') || '4', 10);
+
+  const cv = document.getElementById('c'), g = cv.getContext('2d');
+  const N = 3, S = 120;
+  const cols = ['#e0567a','#5b9dff','#46c08a','#e3a14b','#a877e6','#3fb6c9','#d96aa8','#7bd16a','#e07b53'];
+  const tiles = [];
+
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+    const idx = r * N + c, x = c * S, y = r * S;
+    tiles.push({ index: idx, x: x, y: y, w: S, h: S });
+    g.fillStyle = cols[idx]; g.globalAlpha = 0.85; g.fillRect(x + 6, y + 6, S - 12, S - 12); g.globalAlpha = 1;
+    g.strokeStyle = '#0f1226'; g.lineWidth = 3; g.strokeRect(x + 6, y + 6, S - 12, S - 12);
+    if (idx === target) {
+      g.fillStyle = '#11152b'; g.font = 'bold 64px -apple-system,Arial';
+      g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.fillText(value, x + S / 2, y + S / 2 + 2);   // drawn as pixels — never DOM text
+    }
+  }
+
+  const st = { tiles: tiles, target: target, value: value, solved: false, clicks: [] };
+  window.__cu_game = st;
+
+  cv.addEventListener('click', function (e) {
+    const rect = cv.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const t = tiles.find(t => mx >= t.x && mx <= t.x + t.w && my >= t.y && my <= t.y + t.h);
+    if (!t) return;
+    st.clicks.push(t.index);
+    if (t.index === target) {
+      st.solved = true;
+      g.strokeStyle = '#7bff9b'; g.lineWidth = 6; g.strokeRect(t.x + 6, t.y + 6, S - 12, S - 12);
+      g.fillStyle = '#7bff9b'; g.font = 'bold 40px Arial';
+      g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('✓', t.x + 24, t.y + 24);
+    } else {
+      g.strokeStyle = '#ff6b6b'; g.lineWidth = 6; g.strokeRect(t.x + 6, t.y + 6, S - 12, S - 12);
+    }
+  });
+})();
+</script></body></html>

@@ -1,0 +1,11 @@
+{
+  "task": "calculator",
+  "status": "blocked",
+  "duration_sec": 1.727,
+  "frames": 1,
+  "layers_used": [],
+  "verdict": {
+    "passed": false,
+    "reason": "accessibility"
+  }
+}

@@ -1,0 +1,495 @@
+{
+  "goal": "Solve three real desktop tasks through the five-layer control cascade: Calculator via hotkeys (zero vision), a canvas game via vision, and a draft in Cursor over the Electron debug port.",
+  "run_id": "cu-run-20260620-234522",
+  "started_at": 1781979322.197706,
+  "ended_at": 1781979386.400643,
+  "plan": {
+    "nodes": [
+      {
+        "id": "calc",
+        "skill": "computer_use",
+        "title": "Calculator via deterministic hotkeys (L2a \u00b7 zero vision)",
+        "params": {
+          "task": "calculator"
+        },
+        "deps": []
+      },
+      {
+        "id": "canvas",
+        "skill": "computer_use",
+        "title": "Canvas game read via vision (forces L3)",
+        "params": {
+          "task": "canvas_vision",
+          "n": "7",
+          "tile": 4
+        },
+        "deps": []
+      },
+      {
+        "id": "electron",
+        "skill": "computer_use",
+        "title": "Cursor over electron_debugging_port (page path)",
+        "params": {
+          "task": "electron_cursor",
+          "port": 9223
+        },
+        "deps": []
+      },
+      {
+        "id": "report",
+        "skill": "report_cu",
+        "title": "Assemble CU replay + verify constraints",
+        "params": {},
+        "deps": [
+          "calc",
+          "canvas",
+          "electron"
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "calc",
+        "report"
+      ],
+      [
+        "canvas",
+        "report"
+      ],
+      [
+        "electron",
+        "report"
+      ]
+    ]
+  },
+  "plan_mermaid": "flowchart TD\n    calc[\"Calculator via deterministic hotkeys (L2a \u00b7 zero vision)<br/><i>computer_use</i>\"]\n    canvas[\"Canvas game read via vision (forces L3)<br/><i>computer_use</i>\"]\n    electron[\"Cursor over electron_debugging_port (page path)<br/><i>computer_use</i>\"]\n    report[\"Assemble CU replay + verify constraints<br/><i>report_cu</i>\"]\n    calc --> report\n    canvas --> report\n    electron --> report",
+  "plan_source": "fallback",
+  "browser_path": "failed",
+  "paths_exercised": [
+    "L3",
+    "L1",
+    "page",
+    "L2b-ax",
+    "L2b-llm"
+  ],
+  "steps": [
+    {
+      "node": "plan",
+      "skill": "planner",
+      "params": {
+        "goal": "Solve three real desktop tasks through the five-layer control cascade: Calculator via hotkeys (zero vision), a canvas game via vision, and a draft in Cursor over the Electron debug port."
+      },
+      "started": 0.001,
+      "ended": 0.001,
+      "status": "ok",
+      "summary": "4 nodes via fallback"
+    },
+    {
+      "node": "calc",
+      "skill": "computer_use",
+      "params": {
+        "task": "calculator"
+      },
+      "started": 0.001,
+      "ended": 1.729,
+      "status": "ok",
+      "summary": "calculator: blocked \u00b7 headline=None \u00b7 vision_calls=0"
+    },
+    {
+      "node": "canvas",
+      "skill": "computer_use",
+      "params": {
+        "task": "canvas_vision",
+        "n": "7",
+        "tile": 4
+      },
+      "started": 1.729,
+      "ended": 16.145,
+      "status": "ok",
+      "summary": "canvas_vision: ok \u00b7 headline=L3 \u00b7 vision_calls=1"
+    },
+    {
+      "node": "electron",
+      "skill": "computer_use",
+      "params": {
+        "task": "electron_cursor",
+        "port": 9223
+      },
+      "started": 16.145,
+      "ended": 64.203,
+      "status": "ok",
+      "summary": "electron_cursor: ok \u00b7 headline=page \u00b7 vision_calls=0"
+    },
+    {
+      "node": "report",
+      "skill": "report_cu",
+      "params": {},
+      "started": 64.203,
+      "ended": 64.203,
+      "status": "ok",
+      "summary": "2/3 tasks passed; constraints ALL MET"
+    }
+  ],
+  "llm_calls": [
+    {
+      "model": "claude-sonnet-4-6",
+      "purpose": "plan (demo)",
+      "input_tokens": 234,
+      "output_tokens": 135,
+      "cost_usd": 0.002727,
+      "t": 0.001
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "purpose": "vision:cu (demo)",
+      "input_tokens": 1241,
+      "output_tokens": 20,
+      "cost_usd": 0.004023,
+      "t": 13.976
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "purpose": "cu:judge (demo)",
+      "input_tokens": 87,
+      "output_tokens": 20,
+      "cost_usd": 0.000561,
+      "t": 63.257
+    }
+  ],
+  "actions": [
+    {
+      "i": 1,
+      "kind": "read",
+      "target": "read the number rendered on the canvas",
+      "value": "dict{mark,value}",
+      "path": "L3",
+      "url": "",
+      "note": "",
+      "t": 13.977
+    },
+    {
+      "i": 2,
+      "kind": "click",
+      "target": "click the vision-identified tile #4",
+      "value": "tile 4",
+      "path": "L1",
+      "url": "",
+      "note": "",
+      "t": 15.246
+    },
+    {
+      "i": 3,
+      "kind": "do",
+      "target": "launch Cursor --remote-debugging-port (isolated profile)",
+      "value": "port 9223",
+      "path": "L1",
+      "url": "",
+      "note": "",
+      "t": 20.668
+    },
+    {
+      "i": 4,
+      "kind": "do",
+      "target": "attach Playwright over CDP (the page tool)",
+      "value": "127.0.0.1:9223",
+      "path": "page",
+      "url": "",
+      "note": "",
+      "t": 23.78
+    },
+    {
+      "i": 5,
+      "kind": "do",
+      "target": "open an untitled editor (page channel)",
+      "value": "ok",
+      "path": "page",
+      "url": "",
+      "note": "",
+      "t": 27.952
+    },
+    {
+      "i": 6,
+      "kind": "do",
+      "target": "type the draft into the editor",
+      "value": "5 lines",
+      "path": "page",
+      "url": "",
+      "note": "",
+      "t": 62.859
+    },
+    {
+      "i": 7,
+      "kind": "read",
+      "target": "read the composed draft back from the editor DOM",
+      "value": "list[4]",
+      "path": "L2b-ax",
+      "url": "",
+      "note": "",
+      "t": 63.106
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "trajectory/calculator/frames/0001_blocked-no-accessibility-permission.png",
+      "caption": "blocked: no accessibility permission",
+      "url": "",
+      "t": 1.728
+    },
+    {
+      "path": "trajectory/canvas_vision/frames/0001_canvas-target-opened.png",
+      "caption": "canvas target opened",
+      "url": "",
+      "t": 13.409
+    },
+    {
+      "path": "trajectory/canvas_vision/frames/0002_l3-set-of-marks-vision-overlay.png",
+      "caption": "L3 set-of-marks vision overlay",
+      "url": "",
+      "t": 13.976
+    },
+    {
+      "path": "trajectory/canvas_vision/frames/0003_vision-read-complete.png",
+      "caption": "vision read complete",
+      "url": "",
+      "t": 14.019
+    },
+    {
+      "path": "trajectory/canvas_vision/frames/0004_clicked-tile-4.png",
+      "caption": "clicked tile 4",
+      "url": "",
+      "t": 15.29
+    },
+    {
+      "path": "trajectory/canvas_vision/frames/0005_puzzle-solved.png",
+      "caption": "puzzle solved",
+      "url": "",
+      "t": 15.331
+    },
+    {
+      "path": "trajectory/electron_cursor/frames/0001_cursor-workbench-attached.png",
+      "caption": "Cursor workbench attached",
+      "url": "",
+      "t": 26.467
+    },
+    {
+      "path": "trajectory/electron_cursor/frames/0002_untitled-editor-open.png",
+      "caption": "untitled editor open",
+      "url": "",
+      "t": 28.167
+    },
+    {
+      "path": "trajectory/electron_cursor/frames/0003_after-typing-the-draft.png",
+      "caption": "after typing the draft",
+      "url": "",
+      "t": 63.058
+    },
+    {
+      "path": "trajectory/electron_cursor/frames/0004_draft-verified-via-dom-read-back.png",
+      "caption": "draft verified via DOM read-back",
+      "url": "",
+      "t": 63.257
+    }
+  ],
+  "page_states": [],
+  "path_decisions": [
+    {
+      "intent": "preflight: Accessibility permission for synthetic input",
+      "attempts": [
+        {
+          "path": "L4",
+          "layer": "L4",
+          "ok": false,
+          "note": "System Events refused assistive access (error -1719). Grant Terminal/host app Accessibility in System Settings \u2192 Privacy & Security \u2192 Accessibility."
+        }
+      ],
+      "chosen": "failed",
+      "primary": true
+    },
+    {
+      "intent": "read the number rendered on the canvas",
+      "attempts": [
+        {
+          "path": "L2b-ax",
+          "layer": "L2b-ax",
+          "ok": false,
+          "note": "empty / invalid"
+        },
+        {
+          "path": "L3",
+          "layer": "L3",
+          "ok": true,
+          "note": "dict{mark,value}"
+        }
+      ],
+      "chosen": "L3",
+      "primary": true
+    },
+    {
+      "intent": "click the vision-identified tile #4",
+      "attempts": [
+        {
+          "path": "L1",
+          "layer": "L1",
+          "ok": true,
+          "note": "ok"
+        }
+      ],
+      "chosen": "L1",
+      "primary": true
+    },
+    {
+      "intent": "launch Cursor --remote-debugging-port (isolated profile)",
+      "attempts": [
+        {
+          "path": "L1",
+          "layer": "L1",
+          "ok": true,
+          "note": "ok"
+        }
+      ],
+      "chosen": "L1",
+      "primary": true
+    },
+    {
+      "intent": "attach Playwright over CDP (the page tool)",
+      "attempts": [
+        {
+          "path": "page",
+          "layer": "page",
+          "ok": true,
+          "note": "ok"
+        }
+      ],
+      "chosen": "page",
+      "primary": true
+    },
+    {
+      "intent": "open an untitled editor (page channel)",
+      "attempts": [
+        {
+          "path": "page",
+          "layer": "page",
+          "ok": true,
+          "note": "ok"
+        }
+      ],
+      "chosen": "page",
+      "primary": true
+    },
+    {
+      "intent": "type the draft into the editor",
+      "attempts": [
+        {
+          "path": "page",
+          "layer": "page",
+          "ok": true,
+          "note": "ok"
+        },
+        {
+          "path": "L2a",
+          "layer": "L2a",
+          "ok": null,
+          "note": "not reached (cheaper layer sufficed)"
+        }
+      ],
+      "chosen": "page",
+      "primary": true
+    },
+    {
+      "intent": "read the composed draft back from the editor DOM",
+      "attempts": [
+        {
+          "path": "L2b-ax",
+          "layer": "L2b-ax",
+          "ok": true,
+          "note": "list[4]"
+        },
+        {
+          "path": "L3",
+          "layer": "L3",
+          "ok": null,
+          "note": "not reached (cheaper layer sufficed)"
+        }
+      ],
+      "chosen": "L2b-ax",
+      "primary": true
+    },
+    {
+      "intent": "L2b cheap text-LLM judge: is the composed draft well-formed?",
+      "attempts": [
+        {
+          "path": "L2b-llm",
+          "layer": "L2b-llm",
+          "ok": true,
+          "note": "4/4 expected lines present (offline: deterministic check)"
+        }
+      ],
+      "chosen": "L2b-llm",
+      "primary": false
+    }
+  ],
+  "events": [
+    {
+      "t": 0.001,
+      "level": "warn",
+      "msg": "no ANTHROPIC_API_KEY -> offline MOCK gateway (vision/text-judge are mocked)."
+    },
+    {
+      "t": 0.001,
+      "level": "warn",
+      "msg": "planner(cu): LLM plan rejected (); falling back"
+    },
+    {
+      "t": 0.001,
+      "level": "info",
+      "msg": "planner(cu): using deterministic fallback plan"
+    },
+    {
+      "t": 0.001,
+      "level": "info",
+      "msg": "start_recording[calculator] -> /Users/priyansh/Desktop/NowOrNever/browser-agent/artifacts/cu-run-20260620-234522/trajectory/calculator"
+    },
+    {
+      "t": 1.729,
+      "level": "info",
+      "msg": "stop_recording[calculator] status=blocked frames=1"
+    },
+    {
+      "t": 10.709,
+      "level": "info",
+      "msg": "start_recording[canvas_vision] -> /Users/priyansh/Desktop/NowOrNever/browser-agent/artifacts/cu-run-20260620-234522/trajectory/canvas_vision"
+    },
+    {
+      "t": 15.334,
+      "level": "info",
+      "msg": "stop_recording[canvas_vision] status=ok frames=5"
+    },
+    {
+      "t": 16.146,
+      "level": "info",
+      "msg": "start_recording[electron_cursor] -> /Users/priyansh/Desktop/NowOrNever/browser-agent/artifacts/cu-run-20260620-234522/trajectory/electron_cursor"
+    },
+    {
+      "t": 63.258,
+      "level": "info",
+      "msg": "stop_recording[electron_cursor] status=ok frames=4"
+    }
+  ],
+  "final": {
+    "cu_tasks": 3,
+    "cu_passed": 2,
+    "constraints_met": true,
+    "llm_mode": "demo"
+  },
+  "totals": {
+    "turns": 5,
+    "llm_calls": 3,
+    "input_tokens": 1562,
+    "output_tokens": 175,
+    "total_tokens": 1737,
+    "est_cost_usd": 0.007311,
+    "browser_actions": 7,
+    "screenshots": 10,
+    "duration_sec": 64.2
+  }
+}

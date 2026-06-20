@@ -1,0 +1,19 @@
+{
+  "task": "canvas_vision",
+  "status": "ok",
+  "duration_sec": 4.623,
+  "frames": 5,
+  "layers_used": [
+    "L3",
+    "L1"
+  ],
+  "verdict": {
+    "passed": true,
+    "headline_layer": "L3",
+    "vision_read": {
+      "tile": 4,
+      "value": "7"
+    },
+    "vision_calls": 1
+  }
+}

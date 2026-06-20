@@ -164,6 +164,30 @@ it opens a real Chromium browser and performs visible, multi-step interactions
 
 ---
 
+## 🖥️ Companion: Computer-Use skill (five-layer cascade)
+
+The same catalogue and **frozen orchestrator** now also drive **real desktop apps**.
+`run_cu.py` registers three new skills (`planner`, `computer_use`, `report_cu`) and
+solves three macOS tasks through a **five-layer control cascade** —
+`L1 deterministic → page (Electron CDP) → L2a hotkeys → L2b a11y/text-LLM → L3 vision → L4 blocked` —
+recording each run with `start_recording` into a **trajectory directory** (the evidence).
+
+| Task | Headline layer | Vision calls | Constraint |
+|---|---|---|---|
+| Calculator (`123+654=`) | **L2a** hotkeys | 0 | zero-vision ✅ _(runs live once macOS Accessibility is granted)_ |
+| Cursor (Electron) | **page** — CDP over `electron_debugging_port` | 0 | Electron page path ✅ |
+| Canvas game (no ARIA) | **L3** vision (set-of-marks) | 1 | uses vision ✅ |
+
+```bash
+python run_cu.py          # or: ./demo_cu.sh   (visible run, auto-opens the replay)
+```
+
+Per-run evidence lands in `artifacts/cu-latest/` — `replay.html`, `report.md`, `trace.json`,
+and `trajectory/<task>/` (ordered `frames/` + `trajectory.jsonl` + `meta.json`).
+Full write-up: [`COMPUTER_USE.md`](COMPUTER_USE.md).
+
+---
+
 ## What makes this not "passive scraping"
 
 `fetch_url("https://huggingface.co/models")` returns the **default Trending**
@@ -211,7 +235,10 @@ and its `recipe_hf.py` extension. See [`ARCHITECTURE.md`](ARCHITECTURE.md).
 | `skills/distiller_skill.py` / `qa_skill.py` / `report_skill.py` | Normalise → validate → assemble the replay payload |
 | `skills/report/render.py` | Renders `replay.html`, `report.md`, this README |
 | `run.py` | Composition root: builds the catalogue + runs the orchestrator |
+| `skills/computer_skill.py` + `skills/computer/` | **Computer-Use extension**: five-layer cascade, recorder, macOS/Electron/canvas backends, task recipes |
+| `run_cu.py` · `demo_cu.sh` · `COMPUTER_USE.md` | Computer-Use composition root, one-command demo, write-up |
 | `artifacts/latest/` | Newest run: `replay.html`, `trace.json`, `trace.zip`, `report.md`, `screenshots/` |
+| `artifacts/cu-latest/` | Newest **computer-use** run: `replay.html`, `report.md`, `trace.json`, `trajectory/` |
 
 ## Quickstart
 

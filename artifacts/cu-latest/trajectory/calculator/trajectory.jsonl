@@ -1,0 +1,4 @@
+{"kind": "start", "task": "calculator", "title": "Compute 123+654 = 777 in Calculator via hotkeys; verify without vision", "t": 0.0}
+{"kind": "check", "t": 0.694, "intent": "preflight: Accessibility permission for synthetic input", "layer": "L4", "ok": false, "note": "System Events refused assistive access (error -1719). Grant Terminal/host app Accessibility in System Settings \u2192 Privacy & Security \u2192 Accessibility."}
+{"kind": "frame", "i": 1, "caption": "blocked: no accessibility permission", "frame": "calculator/frames/0001_blocked-no-accessibility-permission.png", "captured": true, "t": 1.727}
+{"kind": "stop", "status": "blocked", "t": 1.728, "verdict": {"passed": false, "reason": "accessibility"}}

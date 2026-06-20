@@ -1,0 +1,17 @@
+{
+  "task": "electron_cursor",
+  "status": "ok",
+  "duration_sec": 47.112,
+  "frames": 4,
+  "layers_used": [
+    "L1",
+    "page",
+    "L2b-ax"
+  ],
+  "verdict": {
+    "passed": true,
+    "headline_layer": "page",
+    "lines_matched": "4/4",
+    "vision_calls": 0
+  }
+}

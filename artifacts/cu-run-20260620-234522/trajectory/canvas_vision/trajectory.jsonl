@@ -1,0 +1,9 @@
+{"kind": "start", "task": "canvas_vision", "title": "Read the number on a canvas (no ARIA) via vision, then click its tile", "t": 0.0}
+{"kind": "frame", "i": 1, "caption": "canvas target opened", "frame": "canvas_vision/frames/0001_canvas-target-opened.png", "captured": true, "t": 2.699}
+{"kind": "frame", "i": 2, "caption": "L3 set-of-marks vision overlay", "frame": "canvas_vision/frames/0002_l3-set-of-marks-vision-overlay.png", "captured": true, "t": 3.268}
+{"kind": "cascade", "t": 3.268, "intent": "read the number rendered on the canvas", "op": "read", "chosen": "L3", "ladder": [{"layer": "L2b-ax", "ok": false, "note": "empty / invalid"}, {"layer": "L3", "ok": true, "note": "dict{mark,value}"}]}
+{"kind": "frame", "i": 3, "caption": "vision read complete", "frame": "canvas_vision/frames/0003_vision-read-complete.png", "captured": true, "t": 3.311}
+{"kind": "cascade", "t": 4.537, "intent": "click the vision-identified tile #4", "op": "click", "chosen": "L1", "ladder": [{"layer": "L1", "ok": true, "note": "ok"}]}
+{"kind": "frame", "i": 4, "caption": "clicked tile 4", "frame": "canvas_vision/frames/0004_clicked-tile-4.png", "captured": true, "t": 4.581}
+{"kind": "frame", "i": 5, "caption": "puzzle solved", "frame": "canvas_vision/frames/0005_puzzle-solved.png", "captured": true, "t": 4.623}
+{"kind": "stop", "status": "ok", "t": 4.626, "verdict": {"passed": true, "headline_layer": "L3", "vision_read": {"tile": 4, "value": "7"}, "vision_calls": 1}}

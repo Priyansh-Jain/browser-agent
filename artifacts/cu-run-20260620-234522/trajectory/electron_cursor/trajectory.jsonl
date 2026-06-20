@@ -1,0 +1,12 @@
+{"kind": "start", "task": "electron_cursor", "title": "Compose a draft in Cursor (Electron) over electron_debugging_port; verify via DOM", "t": 0.0}
+{"kind": "cascade", "t": 4.523, "intent": "launch Cursor --remote-debugging-port (isolated profile)", "op": "do", "chosen": "L1", "ladder": [{"layer": "L1", "ok": true, "note": "ok"}]}
+{"kind": "cascade", "t": 7.634, "intent": "attach Playwright over CDP (the page tool)", "op": "do", "chosen": "page", "ladder": [{"layer": "page", "ok": true, "note": "ok"}]}
+{"kind": "frame", "i": 1, "caption": "Cursor workbench attached", "frame": "electron_cursor/frames/0001_cursor-workbench-attached.png", "captured": true, "t": 10.32}
+{"kind": "cascade", "t": 11.806, "intent": "open an untitled editor (page channel)", "op": "do", "chosen": "page", "ladder": [{"layer": "page", "ok": true, "note": "ok"}]}
+{"kind": "frame", "i": 2, "caption": "untitled editor open", "frame": "electron_cursor/frames/0002_untitled-editor-open.png", "captured": true, "t": 12.02}
+{"kind": "cascade", "t": 46.714, "intent": "type the draft into the editor", "op": "do", "chosen": "page", "ladder": [{"layer": "page", "ok": true, "note": "ok"}, {"layer": "L2a", "ok": null, "note": "not reached (cheaper layer sufficed)"}]}
+{"kind": "frame", "i": 3, "caption": "after typing the draft", "frame": "electron_cursor/frames/0003_after-typing-the-draft.png", "captured": true, "t": 46.912}
+{"kind": "cascade", "t": 46.96, "intent": "read the composed draft back from the editor DOM", "op": "read", "chosen": "L2b-ax", "ladder": [{"layer": "L2b-ax", "ok": true, "note": "list[4]"}, {"layer": "L3", "ok": null, "note": "not reached (cheaper layer sufficed)"}]}
+{"kind": "frame", "i": 4, "caption": "draft verified via DOM read-back", "frame": "electron_cursor/frames/0004_draft-verified-via-dom-read-back.png", "captured": true, "t": 47.111}
+{"kind": "check", "t": 47.111, "intent": "L2b cheap text-LLM judge: is the composed draft well-formed?", "layer": "L2b-llm", "ok": true, "note": "4/4 expected lines present (offline: deterministic check)"}
+{"kind": "stop", "status": "ok", "t": 47.112, "verdict": {"passed": true, "headline_layer": "page", "lines_matched": "4/4", "vision_calls": 0}}

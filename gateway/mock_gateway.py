@@ -34,6 +34,7 @@ class MockGateway:
         self.vision_model = config.vision_model
         self.reason_unavailable = ""
         self.next_vision_likes: Optional[Any] = None  # set by the Browser skill
+        self.next_vision_answer: Optional[Any] = None  # set by the Computer-Use skill (canvas read)
 
     # ---- usage metering (so the cost summary is non-zero + realistic) ----
     def _meter(self, prompt_len: int, reply: str, purpose: str, image: bool = False) -> None:
@@ -99,6 +100,12 @@ class MockGateway:
 
     # ---- vision (set-of-marks read) ----
     def vision(self, prompt: str, image_path: str, system: str = "", purpose: str = "vision", **kw: Any) -> str:
+        # Computer-Use canvas read: the caller hints the answer it rendered, so the
+        # vision *path* is exercised end-to-end offline (a real key reads the pixels).
+        if self.next_vision_answer is not None:
+            reply = json.dumps(self.next_vision_answer)
+            self._meter(len(prompt), reply, "vision:cu", image=True)
+            return reply
         # choose a plausible mark (one whose text contains a number), and report
         # the likes value the caller already established from the page.
         mark = 0
